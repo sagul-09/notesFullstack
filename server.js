@@ -1,7 +1,11 @@
 const express = require('express');
 const app = express();
 const path = require('path');
+const { logger } = require ('./middleware/logger');
+
 const PORT = process.env.PORT || 3000;
+
+app.use(logger);//this is a middleware function that logs the request method, request path, and request headers origin
 
 app.use(express.json());//this is a built-in middleware function in Express. It parses incoming requests with JSON payloads and is based on body-parser.
 
@@ -18,7 +22,7 @@ app.all('*', (req, res) => {
     }else{
         res.type('txt').send('404 not found');
     }});
-    
+
 
 app.listen(PORT, () => {
     console.log(`Server is running on port http://localhost://${PORT}`);
