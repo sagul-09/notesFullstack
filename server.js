@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const { logger } = require ('./middleware/logger');
+const {errorHandler} = require ('./middleware/errorHandler');
 
 const PORT = process.env.PORT || 3000;
 
@@ -23,6 +24,7 @@ app.all('*', (req, res) => {
         res.type('txt').send('404 not found');
     }});
 
+app.use(errorHandler);//this is a middleware function that logs the error message, request method, request path, and request headers origin and sends a response with the error message
 
 app.listen(PORT, () => {
     console.log(`Server is running on port http://localhost://${PORT}`);
