@@ -18,6 +18,7 @@ app.all('*', (req, res) => {
     }else{
         res.type('txt').send('404 not found');
     }});
+    
 
 app.listen(PORT, () => {
     console.log(`Server is running on port http://localhost://${PORT}`);
